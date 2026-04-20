@@ -147,6 +147,21 @@ if not check_password():
 
 # --- MAIN APP LOGIC ---
 
+# === TEMPORARY DEBUG - REMOVE AFTER FIXING ===
+st.sidebar.write("🔍 **DEBUG INFO**")
+st.sidebar.write(f"__file__: {os.path.abspath(__file__)}")
+st.sidebar.write(f"_this_dir: {_this_dir}")
+st.sidebar.write(f"BASE_DIR: {BASE_DIR}")
+st.sidebar.write(f"Files in _this_dir: {os.listdir(_this_dir)}")
+try:
+    parent = os.path.dirname(_this_dir)
+    st.sidebar.write(f"Files in parent: {os.listdir(parent)}")
+except:
+    st.sidebar.write("Cannot list parent dir")
+st.sidebar.write(f"models exists in _this_dir? {os.path.exists(os.path.join(_this_dir, 'models'))}")
+st.sidebar.write(f"models exists in parent? {os.path.exists(os.path.join(os.path.dirname(_this_dir), 'models'))}")
+# === END DEBUG ===
+
 @st.cache_resource
 def load_model():
     with open(os.path.join(BASE_DIR, "models", "trained_model.pkl"), "rb") as f:
