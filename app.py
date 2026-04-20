@@ -5,8 +5,12 @@ import json
 import os
 from datetime import datetime
 
-# Get the project root directory (parent of app/)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Find the project root (works whether app.py is in root or app/ subfolder)
+_this_dir = os.path.dirname(os.path.abspath(__file__))
+if os.path.exists(os.path.join(_this_dir, "models")):
+    BASE_DIR = _this_dir
+else:
+    BASE_DIR = os.path.dirname(_this_dir)
 
 # Configure Streamlit page
 st.set_page_config(
